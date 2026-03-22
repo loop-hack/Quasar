@@ -428,13 +428,14 @@ def main():
         elif ext in [".png", ".jpg", ".jpeg", ".tiff", ".bmp", ".webp"]:
             return read_image(path)
         
-        raise ValueError(f"❌ Unsupported file type: {ext}")
+        raise ValueError(f" Unsupported file type: {ext}")
 
     print(f"\nReading: {input_path}")
     raw = read_any(input_path)
     print_report("Before cleaning", raw)
 
     cleaned = clean_text(raw, verbose=True)
+    print("-----------------------given datatype ----------------",type(cleaned))
     print_report("After cleaning", cleaned)
 
     if output_path:
