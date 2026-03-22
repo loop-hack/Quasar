@@ -5,6 +5,7 @@ from pathlib import Path
 from collections import Counter
 
 import pymupdf
+from pathlib import Path
 
 
 #  Fixing encoding artifacts
@@ -390,17 +391,47 @@ def main():
     input_path  = sys.argv[1]
     output_path = sys.argv[2] if len(sys.argv) > 2 else None
 
-    def read_pdf(pdf_path):
-        doc = pymupdf.open(pdf_path)
+    def read_pdf(path):
+        doc = pymupdf.open(path)
         text = ""
         for page in doc:
             text += page.get_text()
-            text += "\f" # page breaker
-
+            text += "\f"   # page break
         return text
 
+    def read_txt(path, encoding="utf-8"):
+        return Path(path).read_text(encoding=encoding, errors="ignore")
+
+    def read_epub(path):
+        doc = pymupdf.open(path)
+        text = ""
+        for page in doc:
+            text += page.get_text()
+            text += "\n"
+        return text
+
+    def read_image(path):
+        # Extract embedded OCR-able text using PyMuPDF
+        doc = pymupdf.open(path)
+        page = doc[0]
+        return page.get_text()
+
+    def read_any(path):
+        ext = Path(path).suffix.lower()
+
+        if ext == ".pdf":
+            return read_pdf(path)
+        elif ext == ".txt":
+            return read_txt(path)
+        elif ext == ".epub":
+            return read_epub(path)
+        elif ext in [".png", ".jpg", ".jpeg", ".tiff", ".bmp", ".webp"]:
+            return read_image(path)
+        
+        raise ValueError(f"❌ Unsupported file type: {ext}")
+
     print(f"\nReading: {input_path}")
-    raw = read_txt(input_path)
+    raw = read_any(input_path)
     print_report("Before cleaning", raw)
 
     cleaned = clean_text(raw, verbose=True)
