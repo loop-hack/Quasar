@@ -5,16 +5,16 @@ from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.pagesizes import A4
 
 
-model = AutoModel.from_pretrained("bert-base-cased")
+# model = AutoModel.from_pretrained("bert-base-cased")
 
 
-save_path = "./bart-large-cnn"
+# save_path = "./bart-large-cnn"
 
-tokenizer = AutoTokenizer.from_pretrained("facebook/bart-large-cnn")
-model = AutoModelForSeq2SeqLM.from_pretrained("facebook/bart-large-cnn")
+# tokenizer = AutoTokenizer.from_pretrained("facebook/bart-large-cnn")
+# model = AutoModelForSeq2SeqLM.from_pretrained("facebook/bart-large-cnn")
 
-tokenizer.save_pretrained(save_path)
-model.save_pretrained(save_path)
+# tokenizer.save_pretrained(save_path)
+# model.save_pretrained(save_path)
 
 #Output generattin test
 
@@ -65,7 +65,7 @@ for i, chunk in enumerate(chunks):
     final_summary += chunk_summary + "\n\n"
 
 
-doc = SimpleDocTemplate("summary_report.pdf", pagesize=A4)
+doc = SimpleDocTemplate("summary_report1.pdf", pagesize=A4)
 
 styles = getSampleStyleSheet()
 style = styles["Normal"]

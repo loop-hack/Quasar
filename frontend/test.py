@@ -438,100 +438,19 @@ def main():
     print("-----------------------given datatype ----------------",type(cleaned))
     print_report("After cleaning", cleaned)
 
-    if output_path:
-        Path(output_path).write_text(cleaned, encoding="utf-8")
-        print(f"\nSaved cleaned file to: {output_path}")
-    else:
-        preview_len = 2000
-        print(f"\n-- Cleaned Text (first {preview_len} chars) ")
-        print(cleaned[:preview_len])
-        if len(cleaned) > preview_len:
-            print(f"\n... [{len(cleaned) - preview_len:,} more characters]")
 
+    def cleaned_output_path(output_path):
+        if output_path:
+            Path(output_path).write_text(cleaned, encoding="utf-8")
+            print(f"\nSaved cleaned file to: {output_path}")
+            return output_path   # simply return it
 
-from transformers import AutoModel
-from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
-from reportlab.platypus import SimpleDocTemplate, Paragraph
-from reportlab.lib.styles import getSampleStyleSheet
-from reportlab.lib.pagesizes import A4
-
-
-model = AutoModel.from_pretrained("bert-base-cased")
-
-
-save_path = "./bart-large-cnn"
-
-tokenizer = AutoTokenizer.from_pretrained("facebook/bart-large-cnn")
-model = AutoModelForSeq2SeqLM.from_pretrained("facebook/bart-large-cnn")
-
-tokenizer.save_pretrained(save_path)
-model.save_pretrained(save_path)
-
-#Output generattin test
-
-
-model_path = "./bart-large-cnn"   # your local model folder
-
-tokenizer = AutoTokenizer.from_pretrained(model_path)
-model = AutoModelForSeq2SeqLM.from_pretrained(model_path)
-
-with open("output_path", "r", encoding="utf-8") as f:
-    text = f.read()
-
-def chunk_text(text, max_tokens=900):
-    words = text.split()
-    chunks = []
-    current = []
-
-    for word in words:
-        current.append(word)
-        if len(current) >= max_tokens:
-            chunks.append(" ".join(current))
-            current = []
-
-    if current:
-        chunks.append(" ".join(current))
-
-    return chunks
-
-chunks = chunk_text(text)
-
-final_summary = ""
-
-for i, chunk in enumerate(chunks):
-    inputs = tokenizer(chunk, return_tensors="pt", truncation=True, max_length=1024)
-
-    summary_ids = model.generate(
-        inputs["input_ids"],
-        num_beams=4,
-        max_length=200,
-        min_length=40,
-        length_penalty=2.0,
-        early_stopping=True
-    )
-
-    chunk_summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
-
-    print(f"Summary {i+1} done.\n")
-    final_summary += chunk_summary + "\n\n"
-
-
-doc = SimpleDocTemplate("summary_report.pdf", pagesize=A4)
-
-styles = getSampleStyleSheet()
-style = styles["Normal"]
-story = []
-
-story.append(Paragraph("<b>Document Summary</b>", styles['Title']))
-story.append(Paragraph(final_summary.replace("\n", "<br/>"), style))
-
-doc.build(story)
-
-print("PDF saved as summary_report.pdf")
-
-
-
-
-
+        else:
+            preview_len = 2000
+            print(f"\n-- Cleaned Text (first {preview_len} chars) ")
+            print(cleaned[:preview_len])
+            if len(cleaned) > preview_len:
+                print(f"\n... [{len(cleaned) - preview_len:,} more characters]")
+            return None
 if __name__ == "__main__":
     main()
