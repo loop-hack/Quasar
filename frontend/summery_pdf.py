@@ -20,3 +20,6 @@ model_path = "/home/the_programmer/programming/quasar/bart-large-cnn"   # your l
 
 tokenizer = AutoTokenizer.from_pretrained(model_path)
 model = AutoModelForSeq2SeqLM.from_pretrained(model_path)
+
+with open("/home/the_programmer/programming/quasar/frontend/output5.txt", "r", encoding="utf-8") as f:
+    text = f.read()
