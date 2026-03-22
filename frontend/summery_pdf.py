@@ -23,3 +23,19 @@ model = AutoModelForSeq2SeqLM.from_pretrained(model_path)
 
 with open("/home/the_programmer/programming/quasar/frontend/output5.txt", "r", encoding="utf-8") as f:
     text = f.read()
+
+def chunk_text(text, max_tokens=900):
+    words = text.split()
+    chunks = []
+    current = []
+
+    for word in words:
+        current.append(word)
+        if len(current) >= max_tokens:
+            chunks.append(" ".join(current))
+            current = []
+
+    if current:
+        chunks.append(" ".join(current))
+
+    return chunks
