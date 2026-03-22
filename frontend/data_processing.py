@@ -385,6 +385,15 @@ def print_report(label: str, text: str):
 
 def main():
 
+    doc = pymupdf.open("git-cheat-sheet-education.pdf")
+    out = open("output.txt", "wb" )
+
+    for page in doc: # iteratring over pages of doc
+        text = page.get_text().encode("utf8") #getting text of a page and encoding using utf8, storing in text
+        out.write(text) # writing or inserting text into output txt file
+        out.write(bytes((12,))) # same as out.write(b"\f") which is a page breaker in utf8 says that page ended
+    out.close()
+    
     # file mode
     input_path  = sys.argv[1]
     output_path = sys.argv[2] if len(sys.argv) > 2 else None
