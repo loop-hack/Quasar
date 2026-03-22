@@ -39,3 +39,24 @@ def chunk_text(text, max_tokens=900):
         chunks.append(" ".join(current))
 
     return chunks
+
+chunks = chunk_text(text)
+
+final_summary = ""
+
+for i, chunk in enumerate(chunks):
+    inputs = tokenizer(chunk, return_tensors="pt", truncation=True, max_length=1024)
+
+    summary_ids = model.generate(
+        inputs["input_ids"],
+        num_beams=4,
+        max_length=200,
+        min_length=40,
+        length_penalty=2.0,
+        early_stopping=True
+    )
+
+    chunk_summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
+
+    print(f"Summary {i+1} done.\n")
+    final_summary += chunk_summary + "\n\n"
