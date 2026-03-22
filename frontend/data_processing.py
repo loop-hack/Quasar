@@ -442,7 +442,7 @@ def main():
         print(f"\nSaved cleaned file to: {output_path}")
     else:
         preview_len = 2000
-        print(f"\n-- Cleaned Text (first {preview_len} chars) ----------------------")
+        print(f"\n-- Cleaned Text (first {preview_len} chars) ")
         print(cleaned[:preview_len])
         if len(cleaned) > preview_len:
             print(f"\n... [{len(cleaned) - preview_len:,} more characters]")
