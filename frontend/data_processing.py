@@ -385,6 +385,16 @@ def print_report(label: str, text: str):
 
 def main():
 
+
+    def read_pdf(pdf_path):
+        doc = pymupdf.open(pdf_path)
+        text = ""
+        for page in doc:
+            text += page.get_text()
+            text += "\f" # page breaker
+
+        return text
+
     doc = pymupdf.open("git-cheat-sheet-education.pdf")
     out = open("output.txt", "wb" )
 
@@ -393,7 +403,7 @@ def main():
         out.write(text) # writing or inserting text into output txt file
         out.write(bytes((12,))) # same as out.write(b"\f") which is a page breaker in utf8 says that page ended
     out.close()
-    
+
     # file mode
     input_path  = sys.argv[1]
     output_path = sys.argv[2] if len(sys.argv) > 2 else None
