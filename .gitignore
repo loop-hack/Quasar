@@ -1,6 +1,7 @@
 bart-large-cnn
 __pychache__/
-start.py
 *.env
 .env
 *.pyc
+start.py
+index.html

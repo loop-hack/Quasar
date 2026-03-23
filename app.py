@@ -1,4 +1,5 @@
 
+
 import os
 import uuid
 import logging
@@ -19,11 +20,13 @@ from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
 
+#  Logging 
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s  [%(levelname)s]  %(message)s",
 )
 log = logging.getLogger(__name__)
+
 
 
 def find_model():
@@ -88,7 +91,7 @@ def chunk_text(text, max_tokens=900):
     return chunks
 
 
-#  Summarize & build PDF 
+#  Summarize + build PDF 
 def run_summary(cleaned_text: str, output_pdf_path: str, original_filename: str):
     chunks = chunk_text(cleaned_text)
     total  = len(chunks)
