@@ -20,8 +20,6 @@ body{
   background:var(--bg);color:var(--text);min-height:100vh;
   background-image:radial-gradient(ellipse 70% 40% at 50% 0%,rgba(124,111,236,0.12) 0%,transparent 60%);
 }
-
-/* Header */
 .hdr{
   display:flex;align-items:center;justify-content:space-between;
   padding:15px 28px;border-bottom:1px solid var(--border);
@@ -32,24 +30,20 @@ body{
 .logo-q{
   width:28px;height:28px;background:var(--accent);border-radius:7px;
   display:flex;align-items:center;justify-content:center;
-  font-weight:800;font-size:16px;color:#fff;letter-spacing:-1px;
+  font-weight:800;font-size:16px;color:#fff;
 }
-.logo-name{font-weight:700;font-size:17px;color:var(--accent-br);letter-spacing:-0.3px}
+.logo-name{font-weight:700;font-size:17px;color:var(--accent-br)}
 .logo-sub{font-size:12px;color:var(--muted);font-weight:300}
 .status{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted)}
 .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
 .dot-ok {background:var(--green);box-shadow:0 0 5px var(--green)}
-.dot-err{background:var(--red);  box-shadow:0 0 5px var(--red)}
+.dot-err{background:var(--red);box-shadow:0 0 5px var(--red)}
 .dot-chk{background:var(--yellow);animation:pulse 1.4s infinite}
-
-/* Main */
 .main{
   display:flex;align-items:center;justify-content:center;
   min-height:calc(100vh - 60px - 46px);padding:36px 20px;
 }
 .panel{width:100%;max-width:520px;animation:fadeUp 0.35s ease both}
-
-/* Upload zone */
 .zone{
   background:var(--card);border:1.5px dashed var(--border);
   border-radius:var(--r-lg);padding:48px 32px;text-align:center;
@@ -61,8 +55,6 @@ body{
 .zone.filled{border-style:solid;border-color:rgba(74,222,128,0.28);cursor:default}
 .zone:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 #file-input{position:absolute;inset:0;opacity:0;pointer-events:none}
-
-/* Empty state */
 .z-icon{
   width:60px;height:60px;margin:0 auto 16px;
   background:rgba(124,111,236,0.1);border-radius:14px;
@@ -72,8 +64,6 @@ body{
 .z-sub{font-size:13px;color:var(--muted)}
 .z-browse{color:var(--accent-lt);text-decoration:underline;cursor:pointer}
 .z-hint{font-size:11px;color:var(--faint);margin-top:7px}
-
-/* File row */
 .f-row{display:flex;align-items:center;gap:13px}
 .f-icon{
   width:42px;height:42px;flex-shrink:0;
@@ -90,8 +80,6 @@ body{
   transition:border-color .15s,color .15s;
 }
 .f-change:hover{border-color:var(--accent);color:var(--accent-lt)}
-
-/* Buttons */
 .btn{
   display:flex;align-items:center;justify-content:center;gap:9px;
   width:100%;padding:13px;margin-top:14px;
@@ -110,8 +98,6 @@ body{
 }
 .btn-sec:hover{border-color:var(--accent);color:var(--accent-lt)}
 .flow-hint{text-align:center;font-size:11px;color:var(--faint);margin-top:12px;line-height:1.6}
-
-/* Processing */
 .proc{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
 .sp-wrap{width:76px;height:76px}
 .sp-svg{width:100%;height:100%;animation:spin 1.1s linear infinite}
@@ -125,8 +111,6 @@ body{
   background-size:200% 100%;animation:shimmer 2s ease-in-out infinite;
 }
 .p-hint{font-size:11px;color:var(--faint)}
-
-/* Result */
 .res-card{
   background:var(--card);border:1px solid rgba(74,222,128,0.2);
   border-radius:var(--r-lg);padding:38px 32px;
@@ -153,8 +137,6 @@ body{
 }
 .btn-dl:hover{background:#86efac;transform:translateY(-1px)}
 .auto-note{font-size:11px;color:var(--faint)}
-
-/* Error */
 .err-card{
   background:var(--card);border:1px solid rgba(248,113,113,0.2);
   border-radius:var(--r-lg);padding:38px 32px;
@@ -176,26 +158,20 @@ body{
 .tips li{font-size:12px;color:var(--muted);padding-left:14px;position:relative;line-height:1.5}
 .tips li::before{content:"→";position:absolute;left:0;color:var(--faint)}
 .tips code{font-family:monospace;font-size:11px;background:rgba(124,111,236,0.12);color:var(--accent-lt);padding:1px 5px;border-radius:4px}
-
-/* Footer */
 footer{text-align:center;padding:14px;font-size:12px;color:var(--faint);border-top:1px solid var(--border)}
-
-/* Animations */
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
-
 @media(max-width:480px){
   .hdr{padding:13px 16px}
-  .logo-sub,.status span:last-child{display:none}
+  .logo-sub{display:none}
   .zone{padding:36px 18px}
   .res-card,.err-card{padding:28px 18px}
 }
 </style>
 </head>
 <body>
-
 <header class="hdr">
   <div class="logo">
     <div class="logo-q">Q</div>
@@ -209,12 +185,10 @@ footer{text-align:center;padding:14px;font-size:12px;color:var(--faint);border-t
 </header>
 
 <main class="main" id="main">
-
-  <!-- UPLOAD PANEL -->
+  <!-- UPLOAD -->
   <div class="panel" id="pUpload">
     <div class="zone" id="zone" tabindex="0" role="button" aria-label="Upload PDF">
       <input type="file" id="file-input" accept=".pdf,application/pdf"/>
-
       <div id="emptyState">
         <div class="z-icon">
           <svg width="30" height="30" fill="none" stroke="#7c6fec" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
@@ -228,7 +202,6 @@ footer{text-align:center;padding:14px;font-size:12px;color:var(--faint);border-t
         <div class="z-sub">or <span class="z-browse" id="browseLink">browse files</span></div>
         <div class="z-hint">PDF only &middot; max 10 MB</div>
       </div>
-
       <div id="fileState" style="display:none">
         <div class="f-row">
           <div class="f-icon">
@@ -247,7 +220,6 @@ footer{text-align:center;padding:14px;font-size:12px;color:var(--faint);border-t
         </div>
       </div>
     </div>
-
     <button class="btn" id="submitBtn" disabled type="button">
       <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
         <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
@@ -257,7 +229,7 @@ footer{text-align:center;padding:14px;font-size:12px;color:var(--faint);border-t
     <p class="flow-hint">PDF &rarr; text extraction &rarr; cleaning &rarr; BART AI &rarr; summary PDF</p>
   </div>
 
-  <!-- PROCESSING PANEL -->
+  <!-- PROCESSING -->
   <div class="panel proc" id="pProc" style="display:none">
     <div class="sp-wrap">
       <svg class="sp-svg" viewBox="0 0 50 50">
@@ -270,10 +242,10 @@ footer{text-align:center;padding:14px;font-size:12px;color:var(--faint);border-t
     <div class="p-step" id="pStep">Step 1 / 3</div>
     <div class="p-msg"  id="pMsg">Extracting text...</div>
     <div class="p-bar"><div class="p-fill"></div></div>
-    <div class="p-hint">Do not close this tab. The AI model is working.</div>
+    <div class="p-hint">Do not close this tab. Your laptop is doing the work.</div>
   </div>
 
-  <!-- RESULT PANEL -->
+  <!-- RESULT -->
   <div class="panel" id="pResult" style="display:none">
     <div class="res-card">
       <div class="res-icon">
@@ -300,7 +272,7 @@ footer{text-align:center;padding:14px;font-size:12px;color:var(--faint);border-t
     </div>
   </div>
 
-  <!-- ERROR PANEL -->
+  <!-- ERROR -->
   <div class="panel" id="pError" style="display:none">
     <div class="err-card">
       <div class="err-icon">
@@ -315,232 +287,141 @@ footer{text-align:center;padding:14px;font-size:12px;color:var(--faint);border-t
       <div class="tips">
         <div class="tips-h">Common fixes</div>
         <ul>
-          <li>Backend must be running: <code>uvicorn app:app --port 8000</code></li>
+          <li>Run: <code>python start.py</code></li>
           <li>Upload a text-based PDF, not a scanned image</li>
           <li>File must be under 10 MB</li>
-          <li>Check your terminal for the exact error message</li>
+          <li>Check your terminal for the exact error</li>
         </ul>
       </div>
       <button class="btn" id="retryBtn" type="button">Try again</button>
     </div>
   </div>
-
 </main>
 
 <footer>Quasar Summarizer &mdash; built in public</footer>
 
 <script>
-// ── Config ──────────────────────────────────────────────────────
-// Backend URL. When running locally, this is correct as-is.
-// When deployed, change to your Railway/server URL.
-const API = 'http://192.168.1.177:8000'
-let file        = null
-let dlUrl       = null
-let msgTimer    = null
-let state       = 'idle'  // idle | ready | loading | done | error
+const API = 'https://coenobitic-subproportionally-kimiko.ngrok-free.dev'
 
-// ── DOM 
-const zone      = document.getElementById('zone')
-const fi        = document.getElementById('file-input')
-const emptyS    = document.getElementById('emptyState')
-const fileS     = document.getElementById('fileState')
-const fName     = document.getElementById('fName')
-const fSize     = document.getElementById('fSize')
-const submitBtn = document.getElementById('submitBtn')
-const changeBtn = document.getElementById('changeBtn')
-const pFile     = document.getElementById('pFile')
-const pStep     = document.getElementById('pStep')
-const pMsg      = document.getElementById('pMsg')
-const resSrc    = document.getElementById('resSrc')
-const dlBtn     = document.getElementById('dlBtn')
-const resetBtn  = document.getElementById('resetBtn')
-const retryBtn  = document.getElementById('retryBtn')
-const errMsg    = document.getElementById('errMsg')
-const sdot      = document.getElementById('sdot')
-const stxt      = document.getElementById('stxt')
+let file=null,dlUrl=null,msgTimer=null,state='idle'
 
-const panels = {
-  upload: document.getElementById('pUpload'),
-  proc:   document.getElementById('pProc'),
-  result: document.getElementById('pResult'),
-  error:  document.getElementById('pError'),
+const zone=document.getElementById('zone')
+const fi=document.getElementById('file-input')
+const emptyS=document.getElementById('emptyState')
+const fileS=document.getElementById('fileState')
+const fName=document.getElementById('fName')
+const fSize=document.getElementById('fSize')
+const submitBtn=document.getElementById('submitBtn')
+const changeBtn=document.getElementById('changeBtn')
+const pFile=document.getElementById('pFile')
+const pStep=document.getElementById('pStep')
+const pMsg=document.getElementById('pMsg')
+const resSrc=document.getElementById('resSrc')
+const dlBtn=document.getElementById('dlBtn')
+const resetBtn=document.getElementById('resetBtn')
+const retryBtn=document.getElementById('retryBtn')
+const errMsg=document.getElementById('errMsg')
+const sdot=document.getElementById('sdot')
+const stxt=document.getElementById('stxt')
+const panels={upload:document.getElementById('pUpload'),proc:document.getElementById('pProc'),result:document.getElementById('pResult'),error:document.getElementById('pError')}
+
+function show(name){
+  Object.entries(panels).forEach(([k,el])=>el.style.display='none')
+  panels[name].style.display=name==='proc'?'flex':'block'
 }
 
-// ── Show one panel ────────────────────────────────────────────────
-function show(name) {
-  Object.entries(panels).forEach(([k, el]) => {
-    el.style.display = 'none'
-  })
-  const el = panels[name]
-  el.style.display = name === 'proc' ? 'flex' : 'block'
+function fmt(b){
+  if(b<1024)return b+' B'
+  if(b<1048576)return(b/1024).toFixed(1)+' KB'
+  return(b/1048576).toFixed(1)+' MB'
 }
 
-// ── Format bytes ──────────────────────────────────────────────────
-function fmt(b) {
-  if (b < 1024) return b + ' B'
-  if (b < 1048576) return (b/1024).toFixed(1) + ' KB'
-  return (b/1048576).toFixed(1) + ' MB'
-}
-
-// ── Health check ─────────────────────────────────────────────────
-async function checkHealth() {
-  try {
-    const r = await fetch(API + '/health')
-    if (r.ok) {
-      sdot.className  = 'dot dot-ok'
-      stxt.textContent = 'Backend online'
-    } else { throw new Error() }
-  } catch {
-    sdot.className  = 'dot dot-err'
-    stxt.textContent = 'Backend offline — run: uvicorn app:app --port 8000'
+async function checkHealth(){
+  try{
+    const r=await fetch(API+'/health')
+    if(r.ok){sdot.className='dot dot-ok';stxt.textContent='Backend online'}
+    else throw new Error()
+  }catch{
+    sdot.className='dot dot-err'
+    stxt.textContent='Backend offline — run: python start.py'
   }
 }
 checkHealth()
+setInterval(checkHealth,30000)
 
-// ── File handling ─────────────────────────────────────────────────
-function pickFile(f) {
-  if (!f) return
-  if (!f.name.toLowerCase().endsWith('.pdf')) {
-    setError('Only PDF files accepted. Please select a .pdf file.')
-    return
-  }
-  if (f.size > 10 * 1024 * 1024) {
-    setError('File too large. Maximum allowed size is 10 MB.')
-    return
-  }
-  file  = f
-  state = 'ready'
-  fName.textContent = f.name
-  fSize.textContent = fmt(f.size)
-  emptyS.style.display = 'none'
-  fileS.style.display  = 'block'
-  zone.classList.add('filled')
-  zone.style.cursor = 'default'
-  submitBtn.disabled = false
-  show('upload')
+function pickFile(f){
+  if(!f)return
+  if(!f.name.toLowerCase().endsWith('.pdf')){setError('Only PDF files accepted.');return}
+  if(f.size>10*1024*1024){setError('File too large. Max 10MB.');return}
+  file=f;state='ready'
+  fName.textContent=f.name;fSize.textContent=fmt(f.size)
+  emptyS.style.display='none';fileS.style.display='block'
+  zone.classList.add('filled');zone.style.cursor='default'
+  submitBtn.disabled=false;show('upload')
 }
 
-// Drag and drop
-zone.addEventListener('dragover', e => {
-  e.preventDefault()
-  if (state === 'idle') zone.classList.add('drag')
-})
-zone.addEventListener('dragleave', () => zone.classList.remove('drag'))
-zone.addEventListener('drop', e => {
-  e.preventDefault()
-  zone.classList.remove('drag')
-  if (state === 'idle') pickFile(e.dataTransfer.files?.[0])
-})
+zone.addEventListener('dragover',e=>{e.preventDefault();if(state==='idle')zone.classList.add('drag')})
+zone.addEventListener('dragleave',()=>zone.classList.remove('drag'))
+zone.addEventListener('drop',e=>{e.preventDefault();zone.classList.remove('drag');if(state==='idle')pickFile(e.dataTransfer.files?.[0])})
+zone.addEventListener('click',()=>{if(state==='idle')fi.click()})
+document.getElementById('browseLink').addEventListener('click',e=>{e.stopPropagation();fi.click()})
+zone.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&state==='idle'){e.preventDefault();fi.click()}})
+fi.addEventListener('change',e=>{pickFile(e.target.files?.[0]);e.target.value=''})
+changeBtn.addEventListener('click',e=>{e.stopPropagation();resetToIdle();fi.click()})
 
-// Click to browse
-zone.addEventListener('click', () => { if (state === 'idle') fi.click() })
-document.getElementById('browseLink').addEventListener('click', e => {
-  e.stopPropagation(); fi.click()
-})
-zone.addEventListener('keydown', e => {
-  if ((e.key === 'Enter' || e.key === ' ') && state === 'idle') {
-    e.preventDefault(); fi.click()
-  }
-})
-fi.addEventListener('change', e => { pickFile(e.target.files?.[0]); e.target.value = '' })
-
-// Change file
-changeBtn.addEventListener('click', e => {
-  e.stopPropagation()
-  resetToIdle()
-  fi.click()
-})
-
-// ── Processing messages ──────────────────────────────────────────
-const MSGS = [
-  { step: '1 / 3', msg: 'Extracting text from PDF...' },
-  { step: '2 / 3', msg: 'Cleaning and normalizing text...' },
-  { step: '3 / 3', msg: 'BART model is summarizing...' },
-  { step: '3 / 3', msg: '30-120 seconds on CPU. Almost there...' },
-  { step: '3 / 3', msg: 'Writing your summary PDF...' },
+const MSGS=[
+  {step:'1 / 3',msg:'Extracting text from PDF...'},
+  {step:'2 / 3',msg:'Cleaning and normalizing text...'},
+  {step:'3 / 3',msg:'BART model is summarizing...'},
+  {step:'3 / 3',msg:'This takes 1-3 min on CPU. Almost there...'},
+  {step:'3 / 3',msg:'Writing your summary PDF...'},
 ]
-let mi = 0
+let mi=0
+function startMsgs(){mi=0;updMsg();msgTimer=setInterval(()=>{mi=Math.min(mi+1,MSGS.length-1);updMsg()},5000)}
+function updMsg(){pStep.textContent='Step '+MSGS[mi].step;pMsg.textContent=MSGS[mi].msg}
+function stopMsgs(){clearInterval(msgTimer);msgTimer=null}
 
-function startMsgs() {
-  mi = 0; updMsg()
-  msgTimer = setInterval(() => { mi = Math.min(mi+1, MSGS.length-1); updMsg() }, 5000)
-}
-function updMsg() {
-  pStep.textContent = 'Step ' + MSGS[mi].step
-  pMsg.textContent  = MSGS[mi].msg
-}
-function stopMsgs() { clearInterval(msgTimer); msgTimer = null }
-
-// ── Submit ────────────────────────────────────────────────────────
-submitBtn.addEventListener('click', async () => {
-  if (!file || state !== 'ready') return
-
-  state = 'loading'
-  pFile.textContent = file.name
-  resSrc.textContent = file.name
-  show('proc')
-  startMsgs()
-
-  const form = new FormData()
-  form.append('file', file)
-
-  try {
-    // POST the PDF — do NOT set Content-Type manually
-    const res = await fetch(API + '/summarize', { method:'POST', body:form })
+submitBtn.addEventListener('click',async()=>{
+  if(!file||state!=='ready')return
+  state='loading';pFile.textContent=file.name;resSrc.textContent=file.name
+  show('proc');startMsgs()
+  const form=new FormData()
+  form.append('file',file)
+  try{
+    const res=await fetch(API+'/summarize',{method:'POST',body:form})
     stopMsgs()
-
-    if (!res.ok) {
-      let detail = 'An unexpected error occurred.'
-      try { const j = await res.json(); detail = j.detail || detail } catch(_) {}
-      setError(detail)
-      return
+    if(!res.ok){
+      let detail='An unexpected error occurred.'
+      try{const j=await res.json();detail=j.detail||detail}catch(_){}
+      setError(detail);return
     }
-
-    // Response body IS the PDF binary
-    const blob = await res.blob()
-    if (dlUrl) URL.revokeObjectURL(dlUrl)
-    dlUrl = URL.createObjectURL(blob)
-
-    // Get suggested filename from server header
-    const cd    = res.headers.get('Content-Disposition') || ''
-    const match = cd.match(/filename="?([^"]+)"?/)
-    const name  = match ? match[1] : file.name.replace('.pdf','') + '_summary.pdf'
-
-    dlBtn.href     = dlUrl
-    dlBtn.download = name
-    state = 'done'
-    show('result')
-
-    // Auto-trigger download after card appears
-    setTimeout(() => dlBtn.click(), 700)
-
-  } catch(e) {
+    const blob=await res.blob()
+    if(dlUrl)URL.revokeObjectURL(dlUrl)
+    dlUrl=URL.createObjectURL(blob)
+    const cd=res.headers.get('Content-Disposition')||''
+    const match=cd.match(/filename="?([^"]+)"?/)
+    const name=match?match[1]:file.name.replace('.pdf','')+'_summary.pdf'
+    dlBtn.href=dlUrl;dlBtn.download=name
+    state='done';show('result')
+    setTimeout(()=>dlBtn.click(),700)
+  }catch(e){
     stopMsgs()
-    setError('Cannot reach backend.\nMake sure it is running: uvicorn app:app --port 8000')
+    setError('Cannot reach backend.\nRun: python start.py')
   }
 })
 
-// ── Error helper ─────────────────────────────────────────────────
-function setError(msg) {
-  state = 'error'
-  errMsg.textContent = msg
-  show('error')
+function setError(msg){state='error';errMsg.textContent=msg;show('error')}
+
+function resetToIdle(){
+  if(dlUrl){URL.revokeObjectURL(dlUrl);dlUrl=null}
+  state='idle';file=null
+  emptyS.style.display='block';fileS.style.display='none'
+  zone.classList.remove('filled','drag');zone.style.cursor='pointer'
+  submitBtn.disabled=true;fi.value=''
 }
 
-// ── Reset ─────────────────────────────────────────────────────────
-function resetToIdle() {
-  if (dlUrl) { URL.revokeObjectURL(dlUrl); dlUrl = null }
-  state = 'idle'; file = null
-  emptyS.style.display = 'block'
-  fileS.style.display  = 'none'
-  zone.classList.remove('filled','drag')
-  zone.style.cursor = 'pointer'
-  submitBtn.disabled = true
-  fi.value = ''
-}
-
-resetBtn.addEventListener('click',  () => { resetToIdle(); show('upload'); checkHealth() })
-retryBtn.addEventListener('click',  () => { resetToIdle(); show('upload'); checkHealth() })
+resetBtn.addEventListener('click',()=>{resetToIdle();show('upload');checkHealth()})
+retryBtn.addEventListener('click',()=>{resetToIdle();show('upload');checkHealth()})
 </script>
 </body>
 </html>

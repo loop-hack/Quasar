@@ -1,0 +1,6 @@
+bart-large-cnn
+__pychache__/
+start.py
+*.env
+.env
+*.pyc
