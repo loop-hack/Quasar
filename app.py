@@ -24,7 +24,7 @@ from fastapi.staticfiles import StaticFiles
 import pymupdf
 from data_processing import clean_text   #existing function
 
-MODEL_PATH = "sshleifer/distilbart-cnn-12-6"
+MODEL_PATH = "sshleifer/distilbart-cnn-6-6"
 
 
 
@@ -37,7 +37,12 @@ log = logging.getLogger(__name__)
 log.info(f"Loading model from: {MODEL_PATH}")
 
 tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)
-model     = AutoModelForSeq2SeqLM.from_pretrained(MODEL_PATH)
+model     = AutoModelForSeq2SeqLM.from_pretrained(
+    MODEL_PATH,
+    torch_dtype="auto",
+    low_cpu_mem_usage=True,
+)
+model.eval()
 
 log.info("Model loaded.")
 
