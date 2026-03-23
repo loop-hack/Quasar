@@ -333,15 +333,13 @@ footer{text-align:center;padding:14px;font-size:12px;color:var(--faint);border-t
 // ── Config ──────────────────────────────────────────────────────
 // Backend URL. When running locally, this is correct as-is.
 // When deployed, change to your Railway/server URL.
-const API = 'https://web-production-fb9a1.up.railway.app'
-
-// ── State ────────────────────────────────────────────────────────
+const API = 'https://tyree-sanctionable-petrologically.ngrok-free.dev'
 let file        = null
 let dlUrl       = null
 let msgTimer    = null
 let state       = 'idle'  // idle | ready | loading | done | error
 
-// ── DOM ──────────────────────────────────────────────────────────
+// ── DOM 
 const zone      = document.getElementById('zone')
 const fi        = document.getElementById('file-input')
 const emptyS    = document.getElementById('emptyState')
