@@ -2,8 +2,9 @@ fastapi
 uvicorn[standard]
 python-multipart
 transformers
-torch
-PyMuPDF
 reportlab
 sentencepiece
 nltk
+PyMuPDF
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
