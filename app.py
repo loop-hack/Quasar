@@ -78,7 +78,7 @@ MAX_MB    = 10
 MAX_BYTES = MAX_MB * 1024 * 1024
 
 
-#  Chunking 
+# Chunking
 def chunk_text(text, max_tokens=900):
     words, chunks, current = text.split(), [], []
     for word in words:
@@ -91,7 +91,8 @@ def chunk_text(text, max_tokens=900):
     return chunks
 
 
-#  Summarize + build PDF 
+# Summarize + build PDF
+
 def run_summary(cleaned_text: str, output_pdf_path: str, original_filename: str):
     chunks = chunk_text(cleaned_text)
     total  = len(chunks)
@@ -101,21 +102,33 @@ def run_summary(cleaned_text: str, output_pdf_path: str, original_filename: str)
 
     for i, chunk in enumerate(chunks):
         log.info(f"Chunk {i+1}/{total}...")
+
+        chunk_word_count = len(chunk.split())
+
+        # Scale tokens dynamically — target ~25% of input (75% reduction)
+        dynamic_max_tokens = max(150, int(chunk_word_count * 0.30))
+        dynamic_min_tokens = max(80,  int(chunk_word_count * 0.15))
+
         inputs = tokenizer(
             chunk,
             return_tensors="pt",
             truncation=True,
             max_length=1024,
         )
+
+        # Use greedy for small chunks, beam for large ones
+        is_large_chunk = chunk_word_count > 500
+
         summary_ids = model.generate(
             inputs["input_ids"],
-            num_beams=2,
-            max_new_tokens=300,
-            min_length=60,
-            length_penalty=2.0,
-            early_stopping=True,
+            num_beams=2 if is_large_chunk else 1,   # greedy on small chunks
+            max_new_tokens=dynamic_max_tokens,
+            min_length=dynamic_min_tokens,
+            length_penalty=1.0,
+            early_stopping=False,
             no_repeat_ngram_size=3,
         )
+
         chunk_summary  = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
         final_summary += chunk_summary + "\n\n"
         log.info(f"Chunk {i+1}/{total} done.")
@@ -232,7 +245,7 @@ async def summarize(
         # Summarize
         run_summary(cleaned, out_path, file.filename)
 
-        background_tasks.add_task(delete_files, [input_path, out_path])
+        background_tasks.add_task(delete_files, [input_path])
 
         stem          = Path(file.filename).stem
         download_name = f"{stem}_summary.pdf"
