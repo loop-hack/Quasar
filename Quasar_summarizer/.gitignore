@@ -5,3 +5,4 @@ __pychache__/
 *.pyc
 start.py
 index.html
+.gitignore
