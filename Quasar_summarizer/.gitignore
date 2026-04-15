@@ -1,8 +1,0 @@
-bart-large-cnn
-__pychache__/
-*.env
-.env
-*.pyc
-start.py
-index.html
-.gitignore
